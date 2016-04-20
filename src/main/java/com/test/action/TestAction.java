@@ -1,7 +1,11 @@
 package com.test.action;
 
+import java.nio.charset.StandardCharsets;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +18,7 @@ import com.test.entity.GetInfoParam;
 import com.test.entity.GetInfoResult;
 
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 @Controller
 public class TestAction  {
@@ -30,6 +35,9 @@ public class TestAction  {
 	protected HttpServletResponse getHttpServletResponse() {
 		return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
 	}
+	protected HttpServletRequest getHttpServletRequest() {
+		return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+	}
 	protected void writeValue(Object value) throws Exception {
 		writeValue(getHttpServletResponse(), value);
 	}
@@ -39,9 +47,12 @@ public class TestAction  {
 	}
 	
 	protected <T> T readParamByBody(Class<T> clazz) throws Exception {
-		GetInfoParam param = new GetInfoParam();
-		param.setId(123L);
-		String body = objectMapper.writeValueAsString(param);
+		HttpServletRequest request = getHttpServletRequest();
+		String body = IOUtils.toString(request.getInputStream(), StandardCharsets.UTF_8);
+		/**
+		 * some business logic here, for e.g, logging, session.
+		 */
+		// doSomething();
 		T t = objectMapper.readValue(body, clazz);
 		return t;
 	}
