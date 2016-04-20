@@ -50,7 +50,7 @@
 
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>
-		<url-pattern>/app/v2/*</url-pattern>
+		<url-pattern>/v1/*</url-pattern>
 	</servlet-mapping>
 	
 	
@@ -71,7 +71,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>swagger</servlet-name>
-		<url-pattern>/doc/*</url-pattern>
+		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
 	
 	
