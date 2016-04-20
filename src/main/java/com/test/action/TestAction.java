@@ -26,7 +26,7 @@ public class TestAction  {
 	@RequestMapping(value = "/hello/world", method = { RequestMethod.POST })
 	@ResponseBody
 	@ApiOperation(value="Notes",response = GetInfoResult.class)
-	public void getInfo() throws Exception {
+	public void getInfo(GetInfoParam input) throws Exception {
 		GetInfoParam param = readParamByBody(GetInfoParam.class);
 		GetInfoResult result = new GetInfoResult();
 		result.setText(param.getId().toString());
