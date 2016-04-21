@@ -22,5 +22,6 @@
     <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
 
     <!-- Include a swagger configuration-->
-    <bean name="/applicationSwaggerConfig" class="com.test.doc.ApplicationSwaggerConfig"/>
+    <bean name="/swaggerConfig" class="com.test.doc.SwaggerConfig"/>
+    
 </beans>
