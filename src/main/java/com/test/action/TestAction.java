@@ -44,11 +44,10 @@ public class TestAction  {
 	@ResponseBody
 	@ApiOperation(value="短说明",notes="长说明",tags={"Tag2"})
 	@ApiResponses({
-		@ApiResponse(code=200, message = "返回参数",response = GetInfoResult.class),
-		@ApiResponse(code=201, message = "传入参数",response = GetInfoParam.class)
+		@ApiResponse(code=200, message = "返回参数",response = GetInfoResult.class)
+		
 	})
-	public void getInfo2() throws Exception {
-		GetInfoParam param = readParamByBody(GetInfoParam.class);
+	public void getInfo2(GetInfoParam param) throws Exception {
 		GetInfoResult result = new GetInfoResult();
 		result.setText(param.getId().toString());
 		writeValue(result);
